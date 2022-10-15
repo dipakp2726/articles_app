@@ -1,4 +1,4 @@
-import 'package:articles_app/core/services/storage_service.dart';
+import 'package:articles_app/core/services/storage/storage_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveStorageService implements StorageService {
