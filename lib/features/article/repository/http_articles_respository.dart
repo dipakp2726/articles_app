@@ -27,13 +27,16 @@ class HttpArticleRepository implements ArticleRepository {
       queryParameters['tag'] = tags?.join(', ');
     }
 
-    final HttpResponse response = await httpService.get(
+    final response = await httpService.get(
       'articles',
       queryParameters: queryParameters,
       forceRefresh: forceRefresh,
     );
 
-    return List<Article>.from(response.data.map((x) => Article.fromJson(x)));
+    final httpResponse = HttpResponse(data: response);
+
+    return List<Article>.from(
+        httpResponse.data.map((x) => Article.fromJson(x)));
   }
 
   @override
