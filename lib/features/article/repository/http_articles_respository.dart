@@ -47,8 +47,8 @@ class HttpArticleRepository implements ArticleRepository {
       forceRefresh: forceRefresh,
     );
 
-    isOffline = response.isOffline;
+    final httpResponse = HttpResponse(data: response);
 
-    return Article.fromJson(response.data);
+    return Article.fromJson(httpResponse.data);
   }
 }

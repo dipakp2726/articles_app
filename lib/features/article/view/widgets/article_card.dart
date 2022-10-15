@@ -1,6 +1,8 @@
 import 'package:articles_app/features/article/model/article.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/article_page.dart';
+import 'article_author.dart';
 import 'article_cover_image.dart';
 import 'article_info.dart';
 import 'article_tags.dart';
@@ -13,10 +15,18 @@ class ArticleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ArticlePage(id: article.id),
+          ),
+        );
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ArticleAuthor(article),
           if (article.coverImage != null)
             ArticleCoverImage(article.coverImage!),
           Padding(
@@ -38,7 +48,6 @@ class ArticleCard extends StatelessWidget {
           const SizedBox(height: 10),
           ArticleInfo(
             article,
-            isMin: true,
           ),
         ],
       ),

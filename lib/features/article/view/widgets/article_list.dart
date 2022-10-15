@@ -32,7 +32,7 @@ class ArticleList extends ConsumerWidget {
         );
       },
       error: (error, stackTrace) {
-        log('Error fetching popular people');
+        log('Error fetching article list');
         log(error.toString());
         return const ErrorView();
       },
