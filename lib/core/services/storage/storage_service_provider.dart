@@ -4,6 +4,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'hive_storage_service.dart';
 
-final storageServiceProvider = Provider<StorageService>(
-  (_) => HiveStorageService(),
-);
+part 'storage_service_provider.g.dart';
+
+@riverpod
+StorageService storageService(StorageServiceRef ref) {
+  return HiveStorageService();
+}
