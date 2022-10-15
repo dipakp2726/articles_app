@@ -18,6 +18,7 @@ abstract class ArticleRepository {
   Future<List<Article>> getArticles({
     List<String>? tags,
     String? username,
+    required int page,
     bool forceRefresh = false,
   });
 

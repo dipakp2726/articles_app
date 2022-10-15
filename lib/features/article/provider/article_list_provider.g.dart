@@ -29,18 +29,75 @@ class _SystemHash {
   }
 }
 
-String $getArticleListHash() => r'e590aba49126b4a8adf878e582df96c5c8f78d81';
+String $getArticleListHash() => r'784a6be681060ac662a7b620d72eb6473ddfa78b';
 
 /// See also [getArticleList].
-final getArticleListProvider = AutoDisposeFutureProvider<List<Article>>(
-  getArticleList,
-  name: r'getArticleListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $getArticleListHash,
-);
+class GetArticleListProvider extends AutoDisposeFutureProvider<List<Article>> {
+  GetArticleListProvider({
+    required this.page,
+  }) : super(
+          (ref) => getArticleList(
+            ref,
+            page: page,
+          ),
+          from: getArticleListProvider,
+          name: r'getArticleListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $getArticleListHash,
+        );
+
+  final int page;
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetArticleListProvider && other.page == page;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
 
 typedef GetArticleListRef = AutoDisposeFutureProviderRef<List<Article>>;
+
+/// See also [getArticleList].
+final getArticleListProvider = GetArticleListFamily();
+
+class GetArticleListFamily extends Family<AsyncValue<List<Article>>> {
+  GetArticleListFamily();
+
+  GetArticleListProvider call({
+    required int page,
+  }) {
+    return GetArticleListProvider(
+      page: page,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<List<Article>> getProviderOverride(
+    covariant GetArticleListProvider provider,
+  ) {
+    return call(
+      page: provider.page,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'getArticleListProvider';
+}
 
 String $getArticleHash() => r'5428477c653c732051d1d0f4dc20e597fd9b797c';
 

@@ -15,6 +15,7 @@ class HttpArticleRepository implements ArticleRepository {
   Future<List<Article>> getArticles({
     List<String>? tags,
     String? username,
+    required int page,
     bool forceRefresh = false,
   }) async {
     Map<String, dynamic> queryParameters = {};
@@ -26,6 +27,7 @@ class HttpArticleRepository implements ArticleRepository {
       // and doesn't return only the username's articles
       queryParameters['tag'] = tags?.join(', ');
     }
+    queryParameters['page'] = page;
 
     final response = await httpService.get(
       'articles',

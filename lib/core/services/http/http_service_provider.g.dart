@@ -38,5 +38,4 @@ final httpServiceProvider = AutoDisposeProvider<HttpService>(
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $httpServiceHash,
 );
-
 typedef HttpServiceRef = AutoDisposeProviderRef<HttpService>;

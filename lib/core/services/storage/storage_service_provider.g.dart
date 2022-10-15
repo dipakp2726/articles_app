@@ -39,5 +39,4 @@ final storageServiceProvider = AutoDisposeProvider<StorageService>(
       ? null
       : $storageServiceHash,
 );
-
 typedef StorageServiceRef = AutoDisposeProviderRef<StorageService>;
