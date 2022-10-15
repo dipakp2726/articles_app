@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/configs/styles/app_colors.dart';
 import '../../model/article.dart';
 
 class ArticleInfo extends StatelessWidget {
@@ -24,8 +25,8 @@ class ArticleInfo extends StatelessWidget {
               ),
         color: isMin
             ? Theme.of(context).brightness == Brightness.light
-                ? Colors.greenAccent
-                : Colors.white.withOpacity(0.2)
+                ? AppColors.primary
+                : AppColors.secondary.withOpacity(0.2)
             : null,
       ),
       child: Row(

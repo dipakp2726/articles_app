@@ -19,7 +19,6 @@ class ArticleCard extends StatelessWidget {
         children: [
           if (article.coverImage != null)
             ArticleCoverImage(article.coverImage!),
-          if (article.coverImage != null) ArticleTags(tags: article.tags),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
@@ -35,9 +34,12 @@ class ArticleCard extends StatelessWidget {
               ],
             ),
           ),
-          if (article.coverImage == null) ArticleTags(tags: article.tags),
+          ArticleTags(tags: article.tags),
           const SizedBox(height: 10),
-          ArticleInfo(article),
+          ArticleInfo(
+            article,
+            isMin: true,
+          ),
         ],
       ),
     );

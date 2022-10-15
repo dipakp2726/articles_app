@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/configs/styles/app_themes.dart';
 import 'features/article/view/pages/article_list.dart';
 
 class ArticlesApp extends StatelessWidget {
@@ -9,10 +10,10 @@ class ArticlesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Articles App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ArticleListPage(),
+      themeMode: ThemeMode.dark,
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      home: const ArticleListPage(),
     );
   }
 }
