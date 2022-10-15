@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+abstract class AppColors {
   static const Color primary = Color(0xa1e69224);
   static const Color secondary = Color(0xb5e1fc69);
   static const Color black = Color(0xff141414);
@@ -19,7 +19,7 @@ class AppColors {
   }
 
   static MaterialColor getMaterialColorFromColor(Color color) {
-    Map<int, Color> _colorShades = {
+    Map<int, Color> colorShades = {
       50: getShade(color, value: 0.5),
       100: getShade(color, value: 0.4),
       200: getShade(color, value: 0.3),
@@ -31,6 +31,6 @@ class AppColors {
       800: getShade(color, value: 0.2, darker: true),
       900: getShade(color, value: 0.25, darker: true),
     };
-    return MaterialColor(color.value, _colorShades);
+    return MaterialColor(color.value, colorShades);
   }
 }

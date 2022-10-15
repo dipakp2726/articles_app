@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppTextStyles {
+abstract class AppTextStyles {
   static const String fontFamily = 'Raleway';
 
   static const TextStyle bodyLg = TextStyle(

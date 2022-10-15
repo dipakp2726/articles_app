@@ -1,3 +1,4 @@
+import 'package:articles_app/core/configs/configs.dart';
 import 'package:articles_app/core/widgets/app_loader.dart';
 import 'package:articles_app/core/widgets/error_view.dart';
 import 'package:articles_app/features/article/provider/article_list_provider.dart';
@@ -5,11 +6,8 @@ import 'package:articles_app/features/article/view/widgets/article_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-const pageSize = 30;
-
 class ArticleList extends ConsumerWidget {
-  const ArticleList(
-    this.scrollController, {
+  const ArticleList(this.scrollController, {
     Key? key,
   }) : super(key: key);
 
@@ -29,7 +27,9 @@ class ArticleList extends ConsumerWidget {
       child: ListView.custom(
         controller: scrollController,
         childrenDelegate: SliverChildBuilderDelegate(
-          (context, index) {
+              (context, index) {
+            const pageSize = Configs.pageSize;
+
             final page = index ~/ pageSize + 1;
             final indexInPage = index % pageSize;
 
