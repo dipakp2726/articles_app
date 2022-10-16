@@ -44,7 +44,7 @@ class DioHttpService implements HttpService {
   }) async {
     dio.options.extra[dioCacheForceRefreshKey] = forceRefresh;
 
-    final response = await dio.get<Map<String, dynamic>>(
+    final response = await dio.get<dynamic>(
       endpoint,
       queryParameters: queryParameters,
     );
@@ -64,7 +64,7 @@ class DioHttpService implements HttpService {
     String endpoint, {
     Map<String, dynamic>? queryParameters,
   }) async {
-    final response = await dio.post<Map<String, dynamic>>(
+    final response = await dio.post<dynamic>(
       endpoint,
       queryParameters: queryParameters,
     );

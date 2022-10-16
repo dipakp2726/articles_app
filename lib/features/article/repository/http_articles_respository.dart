@@ -35,7 +35,8 @@ class HttpArticleRepository implements ArticleRepository {
     );
 
     return List<Article>.from(
-      (response as List<Map<String, dynamic>>).map(Article.fromJson),
+      (response as List)
+          .map((e) => Article.fromJson(e as Map<String, dynamic>)),
     );
   }
 

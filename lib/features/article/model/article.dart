@@ -32,10 +32,8 @@ class Article extends Equatable {
       coverImage: json['cover_image'] as String?,
       readingTimeMinutes: json['reading_time_minutes'] as int,
       tags: List<String>.from(
-        (json['tag_list'] is String
-                ? json['tags'] as List<String>
-                : json['tag_list'] as List<String>)
-            .map((String x) => x) as List<String>,
+        (json['tag_list'] is List<dynamic> ? json['tag_list'] : json['tags'])
+            as List<dynamic>,
       ),
       bodyHtml: json['body_html'] as String?,
       bodyMarkdown: json['body_markdown'] as String?,
