@@ -1,5 +1,6 @@
 # Flutter Articles App
 
+![Coverage](coverage_badge.svg)
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 [![HitCount](https://hits.dwyl.com/dipakp2726/articles_app.svg?style=flat-square&show=unique)](http://hits.dwyl.com/dipakp2726/articles_app)
 
