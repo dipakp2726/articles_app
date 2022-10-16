@@ -29,16 +29,18 @@ class _SystemHash {
   }
 }
 
-String $getArticleListHash() => r'784a6be681060ac662a7b620d72eb6473ddfa78b';
+String $getArticleListHash() => r'5fffa3ae1ca23843ab7839de2644ff6519bf796b';
 
 /// See also [getArticleList].
 class GetArticleListProvider extends AutoDisposeFutureProvider<List<Article>> {
   GetArticleListProvider({
     required this.page,
+    this.forceRefresh = false,
   }) : super(
           (ref) => getArticleList(
             ref,
             page: page,
+            forceRefresh: forceRefresh,
           ),
           from: getArticleListProvider,
           name: r'getArticleListProvider',
@@ -49,16 +51,20 @@ class GetArticleListProvider extends AutoDisposeFutureProvider<List<Article>> {
         );
 
   final int page;
+  final bool forceRefresh;
 
   @override
   bool operator ==(Object other) {
-    return other is GetArticleListProvider && other.page == page;
+    return other is GetArticleListProvider &&
+        other.page == page &&
+        other.forceRefresh == forceRefresh;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, page.hashCode);
+    hash = _SystemHash.combine(hash, forceRefresh.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -74,9 +80,11 @@ class GetArticleListFamily extends Family<AsyncValue<List<Article>>> {
 
   GetArticleListProvider call({
     required int page,
+    bool forceRefresh = false,
   }) {
     return GetArticleListProvider(
       page: page,
+      forceRefresh: forceRefresh,
     );
   }
 
@@ -86,6 +94,7 @@ class GetArticleListFamily extends Family<AsyncValue<List<Article>>> {
   ) {
     return call(
       page: provider.page,
+      forceRefresh: provider.forceRefresh,
     );
   }
 

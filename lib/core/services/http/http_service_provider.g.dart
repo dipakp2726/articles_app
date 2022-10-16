@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $httpServiceHash() => r'd447c45e36cfdbfc0daed274b7618c878406bf0f';
+String $httpServiceHash() => r'08e08a39221acb8e858697f65461c9e8939d2ac9';
 
 /// See also [httpService].
 final httpServiceProvider = AutoDisposeProvider<HttpService>(

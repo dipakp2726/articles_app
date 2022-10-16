@@ -1,4 +1,3 @@
-import 'package:articles_app/core/model/http_response.dart';
 import 'package:articles_app/core/services/http/http_service.dart';
 
 import '../model/article.dart';
@@ -35,10 +34,7 @@ class HttpArticleRepository implements ArticleRepository {
       forceRefresh: forceRefresh,
     );
 
-    final httpResponse = HttpResponse(data: response);
-
-    return List<Article>.from(
-        httpResponse.data.map((x) => Article.fromJson(x)));
+    return List<Article>.from(response.map((x) => Article.fromJson(x)));
   }
 
   @override
@@ -49,8 +45,6 @@ class HttpArticleRepository implements ArticleRepository {
       forceRefresh: forceRefresh,
     );
 
-    final httpResponse = HttpResponse(data: response);
-
-    return Article.fromJson(httpResponse.data);
+    return Article.fromJson(response);
   }
 }

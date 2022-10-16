@@ -1,3 +1,4 @@
+import 'package:articles_app/core/services/storage/storage_service_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,5 +9,7 @@ part 'http_service_provider.g.dart';
 
 @riverpod
 HttpService httpService(HttpServiceRef ref) {
-  return DioHttpService();
+  final storageService = ref.watch(storageServiceProvider);
+
+  return DioHttpService(storageService);
 }

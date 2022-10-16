@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ArticleList extends ConsumerWidget {
-  const ArticleList(this.scrollController, {
+  const ArticleList(
+    this.scrollController, {
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +22,7 @@ class ArticleList extends ConsumerWidget {
         ref.invalidate(getArticleListProvider);
         // keep showing the progress indicator until the first page is fetched
         return ref.read(
-          getArticleListProvider(page: 1).future,
+          getArticleListProvider(page: 1, forceRefresh: true).future,
         );
       },
       child: ListView.custom(

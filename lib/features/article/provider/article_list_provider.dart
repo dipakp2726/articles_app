@@ -6,11 +6,15 @@ part 'article_list_provider.g.dart';
 
 @riverpod
 Future<List<Article>> getArticleList(GetArticleListRef ref,
-    {required int page}) async {
-  return ref.watch(articleRepositoryProvider).getArticles(page: page);
+    {required int page, bool forceRefresh = false}) async {
+  return ref
+      .watch(articleRepositoryProvider)
+      .getArticles(page: page, forceRefresh: forceRefresh);
 }
 
 @riverpod
 Future<Article> getArticle(GetArticleRef ref, {required int id}) async {
-  return ref.watch(articleRepositoryProvider).getArticle(id: id);
+  return ref.watch(articleRepositoryProvider).getArticle(
+        id: id,
+      );
 }
