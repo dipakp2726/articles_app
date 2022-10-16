@@ -1,7 +1,6 @@
+import 'package:articles_app/core/configs/styles/app_colors.dart';
+import 'package:articles_app/core/configs/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
-
-import 'app_colors.dart';
-import 'app_text_styles.dart';
 
 abstract class AppThemes {
   static ThemeData get darkTheme {
@@ -35,7 +34,6 @@ abstract class AppThemes {
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
-        background: AppColors.white,
       ),
       appBarTheme: const AppBarTheme(
         elevation: 0,

@@ -1,16 +1,11 @@
 import 'package:articles_app/core/configs/configs.dart';
 import 'package:articles_app/core/exceptions/http_exception.dart';
 import 'package:articles_app/core/services/http/http_service.dart';
+import 'package:articles_app/core/services/http/interceptors/cache_interceptor.dart';
+import 'package:articles_app/core/services/storage/storage_service.dart';
 import 'package:dio/dio.dart';
 
-import '../storage/storage_service.dart';
-import 'interceptors/cache_interceptor.dart';
-
 class DioHttpService implements HttpService {
-  final StorageService storageService;
-
-  late final Dio dio;
-
   DioHttpService(
     this.storageService, {
     Dio? dioOverride,
@@ -22,6 +17,10 @@ class DioHttpService implements HttpService {
     }
   }
 
+  final StorageService storageService;
+
+  late final Dio dio;
+
   @override
   String get baseUrl => Configs.apiBaseUrl;
 
@@ -32,19 +31,20 @@ class DioHttpService implements HttpService {
   };
 
   BaseOptions get baseOptions => BaseOptions(
-    baseUrl: baseUrl,
-    headers: headers,
-  );
+        baseUrl: baseUrl,
+        headers: headers,
+      );
 
   @override
-  Future<dynamic> get(String endpoint, {
+  Future<dynamic> get(
+    String endpoint, {
     Map<String, dynamic>? queryParameters,
     bool forceRefresh = false,
     String? customBaseUrl,
   }) async {
     dio.options.extra[dioCacheForceRefreshKey] = forceRefresh;
 
-    Response response = await dio.get(
+    final response = await dio.get<Map<String, dynamic>>(
       endpoint,
       queryParameters: queryParameters,
     );
@@ -60,10 +60,11 @@ class DioHttpService implements HttpService {
   }
 
   @override
-  Future<dynamic> post(String endpoint, {
+  Future<dynamic> post(
+    String endpoint, {
     Map<String, dynamic>? queryParameters,
   }) async {
-    Response response = await dio.post(
+    final response = await dio.post<Map<String, dynamic>>(
       endpoint,
       queryParameters: queryParameters,
     );
@@ -80,14 +81,14 @@ class DioHttpService implements HttpService {
   }
 
   @override
-  Future delete() {
-    // TODO: implement delete
+  Future<void> delete() {
+    // TODO(dipak): implement delete
     throw UnimplementedError();
   }
 
   @override
-  Future put() {
-    // TODO: implement put
+  Future<void> put() {
+    // TODO(dipak): implement put
     throw UnimplementedError();
   }
 }

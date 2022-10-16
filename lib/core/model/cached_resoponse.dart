@@ -1,15 +1,9 @@
 import 'dart:convert';
 
+import 'package:articles_app/core/configs/configs.dart';
 import 'package:dio/dio.dart';
 
-import '../configs/configs.dart';
-
 class CachedResponse {
-  final dynamic data;
-  final DateTime age;
-  final int statusCode;
-  final Headers headers;
-
   CachedResponse({
     required this.data,
     required this.age,
@@ -17,20 +11,27 @@ class CachedResponse {
     required this.headers,
   });
 
-  bool get isValid => DateTime.now().isBefore(age.add(Configs.maxCacheAge));
-
   factory CachedResponse.fromJson(Map<String, dynamic> data) {
     return CachedResponse(
       data: data['data'],
-      age: DateTime.parse(data['age']),
-      statusCode: data['statusCode'],
-      headers: Headers.fromMap((Map<String, List<dynamic>>.from(
-              json.decode(json.encode(data['headers']))))
-          .map(
-        (k, v) => MapEntry(k, List<String>.from(v)),
-      )),
+      age: DateTime.parse(data['age'] as String),
+      statusCode: data['statusCode'] as int,
+      headers: Headers.fromMap(
+        Map<String, List<dynamic>>.from(
+          json.decode(json.encode(data['headers'])) as Map<dynamic, dynamic>,
+        ).map(
+          (k, v) => MapEntry(k, List<String>.from(v)),
+        ),
+      ),
     );
   }
+
+  final dynamic data;
+  final DateTime age;
+  final int statusCode;
+  final Headers headers;
+
+  bool get isValid => DateTime.now().isBefore(age.add(Configs.maxCacheAge));
 
   Map<String, dynamic> toJson() {
     return {
@@ -41,8 +42,8 @@ class CachedResponse {
     };
   }
 
-  Response buildResponse(RequestOptions options) {
-    return Response(
+  Response<dynamic> buildResponse(RequestOptions options) {
+    return Response<dynamic>(
       data: data,
       headers: headers,
       requestOptions: options.copyWith(extra: options.extra),

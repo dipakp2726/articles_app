@@ -1,12 +1,11 @@
+import 'package:articles_app/core/configs/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
-import '../configs/styles/app_colors.dart';
-
 class AppHtml extends StatelessWidget {
-  final String? data;
+  const AppHtml({super.key, required this.data});
 
-  const AppHtml({Key? key, required this.data}) : super(key: key);
+  final String? data;
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +18,17 @@ class AppHtml extends StatelessWidget {
         child: data == null
             ? Container()
             : HtmlWidget(
-                data!,
-                buildAsync: false,
-                renderMode: RenderMode.column,
-                enableCaching: false,
-                textStyle: const TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.secondary,
-                  height: 1.2,
-                ),
-              ),
+          data!,
+          buildAsync: false,
+          enableCaching: false,
+          textStyle: const TextStyle(
+            fontFamily: 'Roboto',
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+            color: AppColors.secondary,
+            height: 1.2,
+          ),
+        ),
       ),
     );
   }

@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 class GridShimmer extends StatelessWidget {
   const GridShimmer({
-    Key? key,
+    super.key,
     this.minOpacity = 0.05,
     this.maxOpacity = 0.1,
-  }) : super(key: key);
+  });
 
   final double minOpacity;
   final double maxOpacity;
 
   @override
   Widget build(BuildContext context) {
-    double itemHeight =
+    final itemHeight =
         (MediaQuery.of(context).size.width - 17 * 2 - 10 * 2) / 3;
 
     return SizedBox(

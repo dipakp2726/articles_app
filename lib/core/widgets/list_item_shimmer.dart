@@ -2,7 +2,7 @@ import 'package:articles_app/core/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 
 class ListItemShimmer extends StatelessWidget {
-  const ListItemShimmer({Key? key}) : super(key: key);
+  const ListItemShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,6 @@ class ListItemShimmer extends StatelessWidget {
       child: Row(
         children: [
           const Expanded(
-            flex: 1,
             child: Shimmer(height: 90),
           ),
           const SizedBox(width: 20),

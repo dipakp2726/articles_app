@@ -1,16 +1,15 @@
 import 'package:articles_app/features/article/model/article.dart';
+import 'package:articles_app/features/article/view/pages/article_page.dart';
+import 'package:articles_app/features/article/view/widgets/article_author.dart';
+import 'package:articles_app/features/article/view/widgets/article_cover_image.dart';
+import 'package:articles_app/features/article/view/widgets/article_info.dart';
+import 'package:articles_app/features/article/view/widgets/article_tags.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/article_page.dart';
-import 'article_author.dart';
-import 'article_cover_image.dart';
-import 'article_info.dart';
-import 'article_tags.dart';
-
 class ArticleCard extends StatelessWidget {
-  final Article article;
+  const ArticleCard(this.article, {super.key});
 
-  const ArticleCard(this.article, {Key? key}) : super(key: key);
+  final Article article;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class ArticleCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          MaterialPageRoute<dynamic>(
             builder: (context) => ArticlePage(id: article.id),
           ),
         );

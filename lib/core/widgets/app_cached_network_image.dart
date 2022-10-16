@@ -1,15 +1,14 @@
 import 'dart:developer';
 
+import 'package:articles_app/core/widgets/app_loader.dart';
+import 'package:articles_app/core/widgets/error_view.dart';
 import 'package:articles_app/core/widgets/shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'app_loader.dart';
-import 'error_view.dart';
-
 class AppCachedNetworkImage extends StatelessWidget {
   const AppCachedNetworkImage({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.customErrorWidgetBuilder,
     this.noLoader = false,
@@ -22,7 +21,7 @@ class AppCachedNetworkImage extends StatelessWidget {
     this.color,
     this.colorBlendMode,
     this.isLoaderShimmer = true,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
   final LoadingErrorWidgetBuilder? customErrorWidgetBuilder;
@@ -62,7 +61,8 @@ class AppCachedNetworkImage extends StatelessWidget {
           // Todo: test this
           // coverage:ignore-start
           (BuildContext context, String url, dynamic error) {
-            log('🖼 🖼 🖼 🖼 🖼 🖼 🖼 🖼 Error Fetching Image 🖼 🖼 🖼 🖼 🖼 🖼 🖼 🖼');
+            log('🖼 🖼 🖼 🖼 🖼 🖼 🖼 🖼 Error Fetching Image'
+                ' 🖼 🖼 🖼 🖼 🖼 🖼 🖼 🖼');
             log('Image url: $url');
             return customErrorWidget ?? const ErrorView();
           }, // coverage:ignore-end

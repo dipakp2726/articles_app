@@ -2,7 +2,7 @@ import 'package:articles_app/core/services/storage/storage_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveStorageService implements StorageService {
-  late Box hiveBox;
+  late Box<dynamic> hiveBox;
 
   Future<void> openBox([String boxName = 'ARTICLES_APP']) async {
     hiveBox = await Hive.openBox(boxName);
@@ -15,7 +15,7 @@ class HiveStorageService implements StorageService {
 
   @override
   Future<void> remove(String key) async {
-    hiveBox.delete(key);
+    await hiveBox.delete(key);
   }
 
   @override
@@ -35,7 +35,7 @@ class HiveStorageService implements StorageService {
 
   @override
   Future<void> set(String? key, dynamic data) async {
-    hiveBox.put(key, data);
+    await hiveBox.put(key, data);
   }
 
   @override

@@ -1,12 +1,11 @@
 import 'package:articles_app/core/services/http/http_service.dart';
-
-import '../model/article.dart';
-import 'article_repository.dart';
+import 'package:articles_app/features/article/model/article.dart';
+import 'package:articles_app/features/article/repository/article_repository.dart';
 
 class HttpArticleRepository implements ArticleRepository {
-  final HttpService httpService;
-
   HttpArticleRepository(this.httpService);
+
+  final HttpService httpService;
 
   bool isOffline = false;
 
@@ -17,12 +16,13 @@ class HttpArticleRepository implements ArticleRepository {
     required int page,
     bool forceRefresh = false,
   }) async {
-    Map<String, dynamic> queryParameters = {};
+    final queryParameters = <String, dynamic>{};
     if (username != null) {
       queryParameters['username'] = username;
     } else {
       // Only add tags query param if the username is null
-      // Because specifying the username with the tags gives priority to the tags
+      // Because specifying the username with the tags gives priority to the
+      // tags
       // and doesn't return only the username's articles
       queryParameters['tag'] = tags?.join(', ');
     }
@@ -34,17 +34,21 @@ class HttpArticleRepository implements ArticleRepository {
       forceRefresh: forceRefresh,
     );
 
-    return List<Article>.from(response.map((x) => Article.fromJson(x)));
+    return List<Article>.from(
+      (response as List<Map<String, dynamic>>).map(Article.fromJson),
+    );
   }
 
   @override
-  Future<Article> getArticle(
-      {required int id, bool forceRefresh = false}) async {
+  Future<Article> getArticle({
+    required int id,
+    bool forceRefresh = false,
+  }) async {
     final response = await httpService.get(
       'articles/$id',
       forceRefresh: forceRefresh,
     );
 
-    return Article.fromJson(response);
+    return Article.fromJson(response as Map<String, dynamic>);
   }
 }

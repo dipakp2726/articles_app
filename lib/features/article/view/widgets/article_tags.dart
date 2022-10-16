@@ -2,9 +2,9 @@ import 'package:articles_app/core/configs/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ArticleTags extends StatelessWidget {
-  final List<String> tags;
+  const ArticleTags({super.key, required this.tags});
 
-  const ArticleTags({Key? key, required this.tags}) : super(key: key);
+  final List<String> tags;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ArticleTags extends StatelessWidget {
               ),
               Text(tags[index])
             ],
-          ),
+              ),
         ),
       ),
     );

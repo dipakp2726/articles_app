@@ -9,8 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ArticleList extends ConsumerWidget {
   const ArticleList(
     this.scrollController, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ScrollController scrollController;
 

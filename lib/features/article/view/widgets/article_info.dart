@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:articles_app/core/configs/styles/app_colors.dart';
+import 'package:articles_app/features/article/model/article.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/configs/styles/app_colors.dart';
-import '../../model/article.dart';
-
 class ArticleInfo extends StatelessWidget {
+  const ArticleInfo(this.article, {super.key, this.isMin = false});
+
   final Article article;
   final bool isMin;
-
-  const ArticleInfo(this.article, {Key? key, this.isMin = false})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +16,15 @@ class ArticleInfo extends StatelessWidget {
         border: isMin
             ? null
             : Border(
-                bottom: BorderSide(
-                    width: 0.5,
-                    color: Theme.of(context).dividerColor.withOpacity(0.3)),
+          bottom: BorderSide(
+                  width: 0.5,
+                  color: Theme.of(context).dividerColor.withOpacity(0.3),
+                ),
               ),
         color: isMin
             ? Theme.of(context).brightness == Brightness.light
-                ? AppColors.primary
-                : AppColors.secondary.withOpacity(0.2)
+            ? AppColors.primary
+            : AppColors.secondary.withOpacity(0.2)
             : null,
       ),
       child: Row(
@@ -51,14 +49,14 @@ class ArticleInfo extends StatelessWidget {
 }
 
 class ArticleInfoItem extends StatelessWidget {
-  final IconData icon;
-  final String text;
-
   const ArticleInfoItem({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
-  }) : super(key: key);
+  });
+
+  final IconData icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +71,9 @@ class ArticleInfoItem extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-              color: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .color!
-                  .withOpacity(0.5)),
+            color:
+                Theme.of(context).textTheme.bodyText2!.color!.withOpacity(0.5),
+          ),
         ),
       ],
     );

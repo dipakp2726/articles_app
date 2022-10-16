@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarLeading extends StatefulWidget {
-  const AppBarLeading({Key? key}) : super(key: key);
+  const AppBarLeading({super.key});
 
   @override
   State<AppBarLeading> createState() => _AppBarLeadingState();
@@ -17,7 +17,7 @@ class _AppBarLeadingState extends State<AppBarLeading>
       vsync: this,
       duration: const Duration(milliseconds: 300),
     );
-    Future.delayed(const Duration(milliseconds: 200)).then((_) {
+    Future<void>.delayed(const Duration(milliseconds: 200)).then((_) {
       animationController.forward();
     });
     super.initState();

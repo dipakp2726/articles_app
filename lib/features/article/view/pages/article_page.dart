@@ -2,24 +2,23 @@ import 'dart:developer';
 
 import 'package:articles_app/core/widgets/app_html.dart';
 import 'package:articles_app/core/widgets/app_loader.dart';
+import 'package:articles_app/core/widgets/error_view.dart';
 import 'package:articles_app/features/article/model/article.dart';
 import 'package:articles_app/features/article/provider/article_list_provider.dart';
+import 'package:articles_app/features/article/view/widgets/article_author.dart';
 import 'package:articles_app/features/article/view/widgets/article_cover_image.dart';
+import 'package:articles_app/features/article/view/widgets/article_info.dart';
+import 'package:articles_app/features/article/view/widgets/article_tags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/widgets/error_view.dart';
-import '../widgets/article_author.dart';
-import '../widgets/article_info.dart';
-import '../widgets/article_tags.dart';
-
 class ArticlePage extends ConsumerWidget {
-  final int id;
-
   const ArticlePage({
-    Key? key,
+    super.key,
     required this.id,
-  }) : super(key: key);
+  });
+
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,9 +43,8 @@ class ArticlePage extends ConsumerWidget {
 
 class _ArticleDetails extends StatelessWidget {
   const _ArticleDetails({
-    Key? key,
     required this.article,
-  }) : super(key: key);
+  });
 
   final Article article;
 

@@ -1,13 +1,12 @@
+import 'package:articles_app/core/configs/styles/app_colors.dart';
+import 'package:articles_app/core/widgets/app_cached_network_image.dart';
 import 'package:articles_app/features/article/model/article.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/configs/styles/app_colors.dart';
-import '../../../../core/widgets/app_cached_network_image.dart';
-
 class ArticleAuthor extends StatelessWidget {
-  final Article article;
+  const ArticleAuthor(this.article, {super.key});
 
-  const ArticleAuthor(this.article, {Key? key}) : super(key: key);
+  final Article article;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class ArticleAuthor extends StatelessWidget {
         child: Row(
           children: [
             if (article.author?.profileImage90 != null)
-              Container(
+              DecoratedBox(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: AppColors.primary, width: 2),

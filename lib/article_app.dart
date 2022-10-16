@@ -1,7 +1,6 @@
+import 'package:articles_app/core/configs/styles/app_themes.dart';
+import 'package:articles_app/features/article/view/pages/article_list_page.dart';
 import 'package:flutter/material.dart';
-
-import 'core/configs/styles/app_themes.dart';
-import 'features/article/view/pages/article_list_page.dart';
 
 class ArticlesApp extends StatelessWidget {
   const ArticlesApp({super.key});

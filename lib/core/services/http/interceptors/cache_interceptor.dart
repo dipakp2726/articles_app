@@ -1,18 +1,17 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:articles_app/core/model/cached_resoponse.dart';
+import 'package:articles_app/core/services/storage/storage_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-
-import '../../../model/cached_resoponse.dart';
-import '../../storage/storage_service.dart';
 
 const dioCacheForceRefreshKey = 'dio_cache_force_refresh_key';
 
 class CacheInterceptor implements Interceptor {
-  final StorageService storageService;
-
   CacheInterceptor(this.storageService);
+
+  final StorageService storageService;
 
   @visibleForTesting
   String createStorageKey(
@@ -21,7 +20,7 @@ class CacheInterceptor implements Interceptor {
     String path, [
     Map<String, dynamic> queryParameters = const {},
   ]) {
-    String storageKey = '${method.toUpperCase()}:${baseUrl + path}/';
+    var storageKey = '${method.toUpperCase()}:${baseUrl + path}/';
     if (queryParameters.isNotEmpty) {
       storageKey += '?';
       queryParameters.forEach((key, value) {
@@ -37,20 +36,21 @@ class CacheInterceptor implements Interceptor {
     log('❌ ❌ ❌ Url: ${err.requestOptions.uri}');
     log('❌ ❌ ❌ ${err.stackTrace}');
     log('❌ ❌ ❌ Response Errors: ${err.response?.data}');
-    String storageKey = createStorageKey(
+    final storageKey = createStorageKey(
       err.requestOptions.method,
       err.requestOptions.baseUrl,
       err.requestOptions.path,
       err.requestOptions.queryParameters,
     );
     if (storageService.has(storageKey)) {
-      final CachedResponse? cachedResponse = _getCachedResponse(storageKey);
+      final cachedResponse = _getCachedResponse(storageKey);
       if (cachedResponse != null) {
         log('📦 📦 📦 Retrieved response from cache');
-        final Response response =
-            cachedResponse.buildResponse(err.requestOptions);
+        final response = cachedResponse.buildResponse(err.requestOptions);
         log('⬅️ ⬅️ ⬅️ Response');
-        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}${response.requestOptions.path}');
+        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌'
+            : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+            '${response.requestOptions.path}');
         log('Query params: ${response.requestOptions.queryParameters}');
         log('-------------------------');
         return handler.resolve(response);
@@ -65,19 +65,21 @@ class CacheInterceptor implements Interceptor {
       log('🌍 🌍 🌍 Retrieving request from network by force refresh');
       return handler.next(options);
     }
-    String storageKey = createStorageKey(
+    final storageKey = createStorageKey(
       options.method,
       options.baseUrl,
       options.path,
       options.queryParameters,
     );
     if (storageService.has(storageKey)) {
-      final CachedResponse? cachedResponse = _getCachedResponse(storageKey);
+      final cachedResponse = _getCachedResponse(storageKey);
       if (cachedResponse != null) {
         log('📦 📦 📦 Retrieved response from cache');
-        final Response response = cachedResponse.buildResponse(options);
+        final response = cachedResponse.buildResponse(options);
         log('⬅️ ⬅️ ⬅️ Response');
-        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}${response.requestOptions.path}');
+        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌'
+            : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+            '${response.requestOptions.path}');
         log('Query params: ${response.requestOptions.queryParameters}');
         log('-------------------------');
         return handler.resolve(response);
@@ -87,8 +89,11 @@ class CacheInterceptor implements Interceptor {
   }
 
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
-    String storageKey = createStorageKey(
+  void onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
+    final storageKey = createStorageKey(
       response.requestOptions.method,
       response.requestOptions.baseUrl,
       response.requestOptions.path,
@@ -100,11 +105,13 @@ class CacheInterceptor implements Interceptor {
         response.statusCode! < 300) {
       log('🌍 🌍 🌍 Retrieved response from network');
       log('⬅️ ⬅️ ⬅️ Response');
-      log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}${response.requestOptions.path}');
+      log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' :
+      '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+          '${response.requestOptions.path}');
       log('Query params: ${response.requestOptions.queryParameters}');
       log('-------------------------');
 
-      CachedResponse cachedResponse = CachedResponse(
+      final cachedResponse = CachedResponse(
         data: response.data,
         headers: Headers.fromMap(response.headers.map),
         age: DateTime.now(),
@@ -118,8 +125,8 @@ class CacheInterceptor implements Interceptor {
   CachedResponse? _getCachedResponse(String storageKey) {
     final rawCachedResponse = storageService.get(storageKey);
     try {
-      final CachedResponse cachedResponse = CachedResponse.fromJson(
-        json.decode(json.encode(rawCachedResponse)),
+      final cachedResponse = CachedResponse.fromJson(
+        json.decode(json.encode(rawCachedResponse)) as Map<String, dynamic>,
       );
       if (cachedResponse.isValid) {
         return cachedResponse;

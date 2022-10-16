@@ -1,20 +1,25 @@
+/// Http Service Interface
 abstract class HttpService {
+  /// Http base url
   String get baseUrl;
 
+  /// Http headers
   Map<String, String> get headers;
 
-  Future<dynamic> get(
-    String endpoint, {
+  /// Http get request
+  Future<dynamic> get(String endpoint, {
     Map<String, dynamic>? queryParameters,
     bool forceRefresh = false,
   });
 
-  Future<dynamic> post(
-    String endpoint, {
+  /// Http post request
+  Future<dynamic> post(String endpoint, {
     Map<String, dynamic>? queryParameters,
   });
 
+  /// Http put request
   Future<dynamic> put();
 
+  /// Http delete request
   Future<dynamic> delete();
 }

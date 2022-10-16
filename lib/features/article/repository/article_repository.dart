@@ -1,9 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:articles_app/core/services/http/http_service_provider.dart';
+import 'package:articles_app/features/article/model/article.dart';
+import 'package:articles_app/features/article/repository/http_articles_respository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../../../core/services/http/http_service_provider.dart';
-import '../model/article.dart';
-import 'http_articles_respository.dart';
 
 part 'article_repository.g.dart';
 

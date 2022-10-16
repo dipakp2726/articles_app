@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class Shimmer extends StatefulWidget {
   const Shimmer({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.minOpacity = 0.05,
     this.maxOpacity = 0.1,
-  }) : super(key: key);
+  });
 
   final double? width;
   final double? height;

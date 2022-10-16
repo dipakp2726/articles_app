@@ -5,8 +5,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'article_list_provider.g.dart';
 
 @riverpod
-Future<List<Article>> getArticleList(GetArticleListRef ref,
-    {required int page, bool forceRefresh = false}) async {
+Future<List<Article>> getArticleList(
+  GetArticleListRef ref, {
+  required int page,
+  bool forceRefresh = false,
+}) async {
   return ref
       .watch(articleRepositoryProvider)
       .getArticles(page: page, forceRefresh: forceRefresh);

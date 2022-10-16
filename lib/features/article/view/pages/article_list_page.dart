@@ -2,7 +2,7 @@ import 'package:articles_app/features/article/view/widgets/article_list.dart';
 import 'package:flutter/material.dart';
 
 class ArticleListPage extends StatefulWidget {
-  const ArticleListPage({Key? key}) : super(key: key);
+  const ArticleListPage({super.key});
 
   @override
   State<ArticleListPage> createState() => ArticleListPageState();
