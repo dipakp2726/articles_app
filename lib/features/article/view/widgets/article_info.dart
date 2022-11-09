@@ -16,15 +16,15 @@ class ArticleInfo extends StatelessWidget {
         border: isMin
             ? null
             : Border(
-          bottom: BorderSide(
+                bottom: BorderSide(
                   width: 0.5,
                   color: Theme.of(context).dividerColor.withOpacity(0.3),
                 ),
               ),
         color: isMin
             ? Theme.of(context).brightness == Brightness.light
-            ? AppColors.primary
-            : AppColors.secondary.withOpacity(0.2)
+                ? AppColors.primary
+                : AppColors.secondary.withOpacity(0.2)
             : null,
       ),
       child: Row(

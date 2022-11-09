@@ -48,8 +48,7 @@ class CacheInterceptor implements Interceptor {
         log('📦 📦 📦 Retrieved response from cache');
         final response = cachedResponse.buildResponse(err.requestOptions);
         log('⬅️ ⬅️ ⬅️ Response');
-        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌'
-            : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
             '${response.requestOptions.path}');
         log('Query params: ${response.requestOptions.queryParameters}');
         log('-------------------------');
@@ -77,8 +76,7 @@ class CacheInterceptor implements Interceptor {
         log('📦 📦 📦 Retrieved response from cache');
         final response = cachedResponse.buildResponse(options);
         log('⬅️ ⬅️ ⬅️ Response');
-        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌'
-            : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+        log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
             '${response.requestOptions.path}');
         log('Query params: ${response.requestOptions.queryParameters}');
         log('-------------------------');
@@ -105,8 +103,7 @@ class CacheInterceptor implements Interceptor {
         response.statusCode! < 300) {
       log('🌍 🌍 🌍 Retrieved response from network');
       log('⬅️ ⬅️ ⬅️ Response');
-      log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' :
-      '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
+      log('<---- ${response.statusCode != 200 ? '❌ ${response.statusCode} ❌' : '✅ 200 ✅'} ${response.requestOptions.baseUrl}'
           '${response.requestOptions.path}');
       log('Query params: ${response.requestOptions.queryParameters}');
       log('-------------------------');

@@ -18,17 +18,17 @@ class AppHtml extends StatelessWidget {
         child: data == null
             ? Container()
             : HtmlWidget(
-          data!,
-          buildAsync: false,
-          enableCaching: false,
-          textStyle: const TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
-            color: AppColors.secondary,
-            height: 1.2,
-          ),
-        ),
+                data!,
+                buildAsync: false,
+                enableCaching: false,
+                textStyle: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.secondary,
+                  height: 1.2,
+                ),
+              ),
       ),
     );
   }

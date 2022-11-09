@@ -15,7 +15,7 @@ class ArticleTags extends StatelessWidget {
         spacing: 10,
         children: List.generate(
           tags.length,
-              (index) => Row(
+          (index) => Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
@@ -27,7 +27,7 @@ class ArticleTags extends StatelessWidget {
               ),
               Text(tags[index])
             ],
-              ),
+          ),
         ),
       ),
     );
