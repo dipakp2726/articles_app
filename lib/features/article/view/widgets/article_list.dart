@@ -1,11 +1,10 @@
 import 'package:articles_app/core/configs/configs.dart';
 import 'package:articles_app/core/widgets/error_view.dart';
+import 'package:articles_app/core/widgets/list_item_shimmer.dart';
 import 'package:articles_app/features/article/provider/article_list_provider.dart';
 import 'package:articles_app/features/article/view/widgets/article_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../core/widgets/list_item_shimmer.dart';
 
 class ArticleList extends ConsumerWidget {
   const ArticleList(
