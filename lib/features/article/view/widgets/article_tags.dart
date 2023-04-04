@@ -22,7 +22,7 @@ class ArticleTags extends StatelessWidget {
                 '# ',
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText2!
+                    .bodyMedium!
                     .copyWith(color: AppColors.secondary),
               ),
               Text(tags[index])

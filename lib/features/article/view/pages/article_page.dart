@@ -62,7 +62,7 @@ class _ArticleDetails extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
             child: Text(
               article.title,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
               textAlign: TextAlign.start,
             ),
           ),

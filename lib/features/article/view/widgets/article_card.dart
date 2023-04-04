@@ -35,7 +35,7 @@ class ArticleCard extends StatelessWidget {
               children: [
                 Text(
                   article.title,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineSmall,
                   textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: 10),
