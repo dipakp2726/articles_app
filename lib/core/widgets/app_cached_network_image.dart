@@ -58,7 +58,7 @@ class AppCachedNetworkImage extends StatelessWidget {
       colorBlendMode: colorBlendMode,
       alignment: alignment,
       errorWidget: customErrorWidgetBuilder ??
-          // Todo: test this
+          // TODO(dipak): test this.
           // coverage:ignore-start
           (BuildContext context, String url, dynamic error) {
             log('🖼 🖼 🖼 🖼 🖼 🖼 🖼 🖼 Error Fetching Image'
